@@ -1,3 +1,5 @@
+import { CategoryService } from './../../services/category.service';
+import { AngularFireDatabase } from 'angularfire2/database';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,7 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductFormComponent implements OnInit {
 
-  constructor() { }
+  categories$;
+
+  constructor(categoryService : CategoryService) {
+    this.categories$ = categoryService.getCategories();
+  }
 
   ngOnInit() {
   }
