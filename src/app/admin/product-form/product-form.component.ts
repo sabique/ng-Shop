@@ -2,6 +2,7 @@ import { ProductService } from './../../services/product.service';
 import { CategoryService } from './../../services/category.service';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product-form',
@@ -12,7 +13,10 @@ export class ProductFormComponent implements OnInit {
 
   categories$;
 
-  constructor(categoryService: CategoryService, private productService: ProductService) {
+  constructor(
+    private router: Router,
+    categoryService: CategoryService, 
+    private productService: ProductService) {
     this.categories$ = categoryService.getCategories();
   }
 
@@ -21,5 +25,6 @@ export class ProductFormComponent implements OnInit {
 
   save(product){
     this.productService.create(product);
+    this.router.navigate(['/admin/products']);
   }
 }
