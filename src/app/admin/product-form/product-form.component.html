@@ -39,8 +39,9 @@
           <div *ngIf="imageUrl.errors.url">Image URL is invalid.</div>
         </div>
       </div>
-      <button class="btn btn-primary">Save</button>
-      <a routerLink="/admin/products/" class="float-md-right">Go Back</a>
+      <button class="btn btn-primary">Save</button> &nbsp;
+      <button type="button" (click)="delete()" class="btn btn-danger">Delete</button>
+      <a routerLink="/admin/products/" class="float-md-right btn btn-default">Go Back</a>
     </form>
   </div>
   <div class="col-md-6">
