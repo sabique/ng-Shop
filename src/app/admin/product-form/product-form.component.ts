@@ -1,8 +1,8 @@
 import { ProductService } from './../../services/product.service';
 import { CategoryService } from './../../services/category.service';
-import { AngularFireDatabase } from 'angularfire2/database';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-product-form',
@@ -10,14 +10,22 @@ import { Router } from '@angular/router';
   styleUrls: ['./product-form.component.css']
 })
 export class ProductFormComponent implements OnInit {
-
+  product = {};
   categories$;
 
   constructor(
     private router: Router,
-    categoryService: CategoryService, 
+    private route: ActivatedRoute,
+    private categoryService: CategoryService,
     private productService: ProductService) {
     this.categories$ = categoryService.getCategories();
+
+    const productId = this.route.snapshot.paramMap.get('id');
+
+    if(productId)
+    {
+      this.productService.get(productId).pipe(take(1)).subscribe(p => this.product = p);
+    }
   }
 
   ngOnInit() {
