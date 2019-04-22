@@ -9,7 +9,43 @@
     type="text"
     placeholder="Search...">
 </p>
-<table class="table">
+
+<data-table
+  [items]="items"
+  [itemCount]="itemCount"
+  (reload)="reloadItems($event)"
+>
+<data-table-column
+  [property]="'title'"
+  [header]="'Product'"
+  [sortable]="true"
+  [resizable]="true"
+>
+</data-table-column>
+
+<data-table-column
+  [property]="'price'"
+  [header]="'Price (INR)'"
+  [sortable]="true"
+  [resizable]="true"
+> 
+  <ng-template #dataTableCell let-item="item">
+    {{ item.price | currency:'INR':true }}
+  </ng-template>
+</data-table-column>
+
+<data-table-column
+  [property]="'$key'"
+  [header]="'Action'"
+> 
+  <ng-template #dataTableCell let-item="item">
+      <a [routerLink]="['/admin/products/', item.$key]">Edit</a>
+  </ng-template>
+</data-table-column>
+
+</data-table>
+
+<!-- <table class="table">
   <thead>
     <tr>
       <td>Product</td>
@@ -26,4 +62,4 @@
       </td>
     </tr>
   </tbody>
-</table>
+</table> -->
