@@ -1,3 +1,4 @@
+import { Product } from './../../models/product';
 import { ProductService } from './../../services/product.service';
 import { CategoryService } from './../../services/category.service';
 import { Component, OnInit } from '@angular/core';
@@ -10,7 +11,7 @@ import { take } from 'rxjs/operators';
   styleUrls: ['./product-form.component.css']
 })
 export class ProductFormComponent implements OnInit {
-  product = {};
+  product: Product;
   categories$;
   productId;
 
@@ -21,9 +22,10 @@ export class ProductFormComponent implements OnInit {
     private productService: ProductService) {
     this.categories$ = categoryService.getCategories();
 
+    this.product = {title: '', price: 0, category: '', imageUrl: ''};
     this.productId = this.route.snapshot.paramMap.get('id');
 
-    if(this.productId)
+    if (this.productId)
     {
       this.productService.get(this.productId).pipe(take(1)).subscribe(p => this.product = p);
     }

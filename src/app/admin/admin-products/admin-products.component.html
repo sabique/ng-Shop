@@ -19,8 +19,8 @@
   </thead>
   <tbody>
     <tr *ngFor="let p of filteredProduct">
-      <td>{{ p.value.title }}</td>
-      <td><i class="fa fa-inr"></i> {{ p.value.price }}</td>
+      <td>{{ p.title }}</td>
+      <td><i class="fa fa-inr"></i> {{ p.price }}</td>
       <td>
         <a [routerLink]="['/admin/products/', p.$key]">Edit</a>
       </td>

@@ -1,3 +1,4 @@
+import { Product } from './../models/product';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
@@ -6,10 +7,10 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class ProductService {
-  productRefs: AngularFireList<any>;
+  productRefs: AngularFireList<Product>;
 
-  constructor(private db: AngularFireDatabase) { 
-    this.productRefs = this.db.list('/products/');
+  constructor(private db: AngularFireDatabase) {
+    this.productRefs = this.db.list<Product>('/products/');
   }
 
   create(product){
@@ -18,21 +19,24 @@ export class ProductService {
 
   getAll(){
     return this.productRefs.snapshotChanges().pipe(
-      map(changes => changes.map(c => ({
-        $key: c.key,
-        value: c.payload.val()
-      }))));
+      map(actions => {
+        return actions.map(a => {
+          const $key = a.key;
+          const value = a.payload.val() as Product;
+          return {$key, ...value};
+        });
+      }));
   }
 
   get(productId){
-    return this.db.object('/products/' + productId).valueChanges();
+    return this.db.object<Product>('/products/' + productId).valueChanges();
   }
 
-  update(productId, product){
-    return this.db.object('/products/' + productId).update(product);
+  update(productId, product: Product){
+    return this.db.object<Product>('/products/' + productId).update(product);
   }
 
   delete(productId){
-    return this.db.object('/products/' + productId).remove();
+    return this.db.object<Product>('/products/' + productId).remove();
   }
 }
