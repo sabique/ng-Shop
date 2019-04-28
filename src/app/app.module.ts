@@ -29,6 +29,7 @@ import { CategoryService } from './services/category.service';
 import { ProductService } from './services/product.service';
 import { ProductsFilterComponent } from './products-filter/products-filter.component';
 import { ProductCardComponent } from './product-card/product-card.component';
+import { ShoppingCartService } from './services/shopping-cart.service';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import { ProductCardComponent } from './product-card/product-card.component';
     UserService,
     AdminAuthGuard,
     CategoryService,
-    ProductService
+    ProductService,
+    ShoppingCartService
   ],
   bootstrap: [AppComponent]
 })

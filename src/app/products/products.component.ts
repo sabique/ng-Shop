@@ -17,8 +17,8 @@ export class ProductsComponent {
 
   constructor(
     route: ActivatedRoute,
-    productService: ProductService
-    ) {
+    productService: ProductService ) {
+
       productService.getAll().pipe(
         switchMap(products => {
           this.products = products;
