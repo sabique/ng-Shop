@@ -37,19 +37,27 @@ export class ShoppingCartService {
   }
 
   async addToCart(productArgs: Product) {
+    this.updateItemQuantity(productArgs, 1);
+  }
+
+  async removeFromCart(productArgs: Product) {
+    this.updateItemQuantity(productArgs, -1);
+  }
+
+  private async updateItemQuantity(productArgs: Product, change: number) {
     const $key = productArgs['$key'];
     const cartId = await this.getOrCreateCartId();
     let items = this.getItem(cartId, $key);
 
     items.valueChanges().pipe(take(1)).subscribe( item => {
       items.update({
-        product: this.getProductObject(productArgs),
-        quantity: (item ? item.quantity : 0) + 1
+        product: this.getTranposedProduct(productArgs),
+        quantity: (item ? item.quantity : 0) + change
       });
     });
   }
 
-  private getProductObject(productArg: Product){
+  private getTranposedProduct(productArg: Product){
     const product: Product = {
       category: productArg.category,
       imageUrl: productArg.imageUrl,
