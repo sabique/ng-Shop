@@ -6,21 +6,34 @@
   <table class="table">
     <thead>
       <tr>
-        <td>Product</td>
+        <td colspan="2">Product</td>
         <td>Quantity</td>
         <td>Price</td>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let productKey of cart.productKeys">
+      <tr *ngFor="let item of cart.itemsMap">
         <td>
-          {{ cart.items[productKey].product.title }}
+          <img [src]="item.product.imageUrl" [alt]="item.product.title" width="80" height="80">
         </td>
         <td>
-          {{ cart.items[productKey].quantity }}
+          {{ item.product.title }}
         </td>
-        <td></td>
+        <td>
+          {{ item.quantity }}
+        </td>
+        <td>
+          {{ item.totalPrice | currency:'INR':true }}
+        </td>
       </tr>
     </tbody>
+    <tfoot>
+      <tr>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th>{{ cart.totalPrice | currency:'INR':true }}</th>
+      </tr>
+    </tfoot>
   </table>
 </ng-container>
