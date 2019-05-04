@@ -61,15 +61,4 @@ export class ShoppingCartService {
       });
     });
   }
-
-  private getTranposedProduct(productArg: Product){
-    const product: Product = {
-      category: productArg.category,
-      imageUrl: productArg.imageUrl,
-      price: productArg.price,
-      title: productArg.title
-    };
-
-    return product;
-  }
 }
