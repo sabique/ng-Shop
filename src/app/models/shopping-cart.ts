@@ -3,7 +3,7 @@ import { ShoppingCartItem } from './shopping-cart-item';
 
 export class ShoppingCart {
     itemsMap: ShoppingCartItem[] = [];
-    constructor(public items: { [productId: string]: ShoppingCartItem }) {
+    constructor(private items: { [productId: string]: ShoppingCartItem }) {
         this.items = items || {};
         // tslint:disable-next-line: forin
         for(let productId in items) {
@@ -32,7 +32,6 @@ export class ShoppingCart {
     }
 
     getQuantity(product: Product) {
-        //console.log('product', product);
         // tslint:disable-next-line: no-string-literal
         const item = this.items[product['$key']];
         return item ? item.quantity : 0;

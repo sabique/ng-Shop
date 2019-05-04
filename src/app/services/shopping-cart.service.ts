@@ -14,8 +14,8 @@ export class ShoppingCartService {
 
   async getCart() {
     const cartId = await this.getOrCreateCartId();
-    return this.db.object<ShoppingCart>('/shopping-carts/' + cartId).valueChanges().pipe(
-      map(x => new ShoppingCart(x.items))
+    return this.db.object('/shopping-carts/' + cartId).valueChanges().pipe(
+      map(x => new ShoppingCart(x['items']))
     );
   }
 
