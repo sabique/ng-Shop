@@ -4,16 +4,20 @@ import { ShoppingCartItem } from './shopping-cart-item';
 export class ShoppingCart {
     itemsMap: ShoppingCartItem[] = [];
     constructor(public items: { [productId: string]: ShoppingCartItem }) {
-// tslint:disable-next-line: forin
+        this.items = items || {};
+        // tslint:disable-next-line: forin
         for(let productId in items) {
             let item = items[productId];
-            this.itemsMap.push(new ShoppingCartItem(item.quantity, item.product));
+            let x = new ShoppingCartItem();
+            Object.assign(x, item);
+            x.$key = productId;
+            this.itemsMap.push(x);
         }
     }
 
     get totalPrice() {
         let sum = 0;
-// tslint:disable-next-line: forin
+        // tslint:disable-next-line: forin
         for(let productId in this.itemsMap) {
             sum += this.itemsMap[productId].totalPrice;
         }
@@ -22,7 +26,7 @@ export class ShoppingCart {
 
     get totalItemsCount() {
         let count = 0;
-// tslint:disable-next-line: forin
+        // tslint:disable-next-line: forin
         for (let productKey in this.items) {
             count += this.items[productKey].quantity;
         }
@@ -30,7 +34,8 @@ export class ShoppingCart {
     }
 
     getQuantity(product: Product) {
-// tslint:disable-next-line: no-string-literal
+        //console.log('product', product);
+        // tslint:disable-next-line: no-string-literal
         const item = this.items[product['$key']];
         return item ? item.quantity : 0;
     }
