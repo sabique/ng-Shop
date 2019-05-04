@@ -14,7 +14,7 @@ import { Order } from '../models/order';
 export class ShippingFormComponent implements OnInit, OnDestroy {
 // tslint:disable-next-line: no-input-rename
   @Input('cart') cart: ShoppingCart;
-  shipping = {};
+  shipping = {name: '', addressLine1: '', addressLine2: '', city: ''};
   userId: string;
   userSubscription: Subscription;
 
