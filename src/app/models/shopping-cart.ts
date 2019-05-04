@@ -8,10 +8,8 @@ export class ShoppingCart {
         // tslint:disable-next-line: forin
         for(let productId in items) {
             let item = items[productId];
-            let x = new ShoppingCartItem();
-            Object.assign(x, item);
-            x.$key = productId;
-            this.itemsMap.push(x);
+
+            this.itemsMap.push(new ShoppingCartItem({ ...item, $key: productId }));
         }
     }
 
