@@ -10,6 +10,6 @@ export class OrderService {
   constructor(private db: AngularFireDatabase) { }
 
   placeOrder(order) {
-    this.db.list('/orders').push(order);
+    return this.db.list('/orders').push(order);
   }
 }
