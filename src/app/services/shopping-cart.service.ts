@@ -58,12 +58,18 @@ export class ShoppingCartService {
     let items = this.getItem(cartId, $key);
 
     items.valueChanges().pipe(take(1)).subscribe( item => {
-      items.update({
-        title: productArgs.title,
-        imageUrl: productArgs.imageUrl,
-        price: productArgs.price,
-        quantity: (item ? item.quantity : 0) + change
-      });
+      let quantity = (item ? item.quantity : 0) + change;
+
+      if(quantity === 0) {
+        items.remove();
+      } else {
+        items.update({
+          title: productArgs.title,
+          imageUrl: productArgs.imageUrl,
+          price: productArgs.price,
+          quantity
+        });
+      }
     });
   }
 }
