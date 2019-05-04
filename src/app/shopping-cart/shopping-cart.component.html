@@ -30,7 +30,11 @@
     </tbody>
     <tfoot>
       <tr>
-        <th></th>
+        <th>
+          <button 
+            (click)="clearCart()"
+            class="btn btn-danger btn-sm">Clear Shopping Cart</button>
+        </th>
         <th></th>
         <th></th>
         <th>{{ cart.totalPrice | currency:'INR':true }}</th>
