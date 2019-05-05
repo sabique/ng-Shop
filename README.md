@@ -12,7 +12,7 @@ The application is hosted on the firebase and you can view it here: [https://ng-
 ### Shipping and Order Review
 ![Screenshot](https://i.imgur.com/SFI0U2e.png)
 ### Order Success
-![Screenshot](https://i.imgur.com/t9yCAli.png)
+![Screenshot](https://i.imgur.com/fjDfUrF.png)
 
 # Functionality
 * View products in catalog
