@@ -5,7 +5,14 @@ The admin can also manage the products and orders along with rest of the functio
 <br><br>
 The application is hosted on the firebase and you can view it here: [https://ng-shop-2a084.firebaseapp.com/](https://ng-shop-2a084.firebaseapp.com/)
 <br><br>
-![Screenshot](https://i.imgur.com/uWxU0uM.gifv)
+### Product Catalog
+![Screenshot](https://i.imgur.com/GlAiTuQ.png)
+### Shopping Cart
+![Screenshot](https://i.imgur.com/uDtW46O.png)
+### Shipping and Order Review
+![Screenshot](https://i.imgur.com/SFI0U2e.png)
+### Order Success
+![Screenshot](https://i.imgur.com/t9yCAli.png)
 
 # Functionality
 * View products in catalog
